@@ -117,24 +117,39 @@ func (logger *Logger) print(level LoggerLevel, str string) LoggerError {
 		return ErrorLevelNotEnough
 	}
 
+	err := ErrorNone
+	switch logger.logtype {
+	case OutputTypeNormal:
+		err = logger.printNormal(level, str)
+	case OutputTypeJson:
+		err = logger.printJson(level, str)
+	}
+
+	return err
+}
+
+func (logger *Logger) printNormal(level LoggerLevel, str string) LoggerError {
 	lvstr := getLevelStr(level)
 	now := getDateStr()
 
-	switch logger.logtype {
-	case OutputTypeNormal:
-		fmt.Fprintf(logger.fp, "[%s] [%s] %s\n", now, lvstr, str)
-	case OutputTypeJson:
-		var tmpstruct LoggerJson
-		tmpstruct.Level = lvstr
-		tmpstruct.Date = now
-		tmpstruct.Message = str
-		json, err := json.Marshal(tmpstruct)
-		if err != nil {
-			return ErrorJsonConvertFailed
-		}
-		fmt.Fprintf(logger.fp, "%+v\n", string(json))
+	fmt.Fprintf(logger.fp, "[%s] [%s] %s\n", now, lvstr, str)
+	return ErrorNone
+}
+
+func (logger *Logger) printJson(level LoggerLevel, str string) LoggerError {
+	lvstr := getLevelStr(level)
+	now := getDateStr()
+
+	var tmpstruct LoggerJson
+	tmpstruct.Level = lvstr
+	tmpstruct.Date = now
+	tmpstruct.Message = str
+	json, err := json.Marshal(tmpstruct)
+	if err != nil {
+		return ErrorJsonConvertFailed
 	}
 
+	fmt.Fprintf(logger.fp, "%+v\n", string(json))
 	return ErrorNone
 }
 
