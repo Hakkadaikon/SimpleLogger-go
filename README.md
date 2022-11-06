@@ -3,7 +3,7 @@
 SimpleLogger-go is logger library.
 
 ## Usage
-Examples:
+###Examples:
 
 ```go
 package main
@@ -28,7 +28,7 @@ func main() {
 }
 ```
 
-Output(OutputTypeNormal):
+###Output(OutputTypeNormal):
 
 ```
 [2022/11/07 01:13:46] [Info] Info message
@@ -36,7 +36,7 @@ Output(OutputTypeNormal):
 [2022/11/07 01:13:46] [Error] Error message
 ```
 
-Output(OutputTypeJson):
+###Output(OutputTypeJson):
 
 ```json
 {"level":"Info","message":"Info message","date":"2022/11/07 01:13:46"}
