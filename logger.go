@@ -16,7 +16,7 @@ const (
 	LevelError
 )
 
-type LoggerError int
+type LoggerError uint
 
 const (
 	ErrorNone LoggerError = iota
@@ -27,7 +27,7 @@ const (
 	ErrorJsonConvertFailed
 )
 
-type LoggerOutputType int
+type LoggerOutputType uint
 
 const (
 	OutputTypeNormal LoggerOutputType = iota
