@@ -82,7 +82,7 @@ func (logger *Logger) Deinit() LoggerError {
 	return ErrorNone
 }
 
-func getDateStr() string {
+func (logger *Logger) getDateStr() string {
 	now := time.Now()
 	str := fmt.Sprintf(
 		"%04d/%02d/%02d %02d:%02d:%02d",
@@ -96,7 +96,7 @@ func getDateStr() string {
 	return str
 }
 
-func getLevelStr(level LoggerLevel) string {
+func (logger *Logger) getLevelStr(level LoggerLevel) string {
 	lvstr := "???"
 	switch level {
 	case LevelDebug:
@@ -129,16 +129,16 @@ func (logger *Logger) print(level LoggerLevel, str string) LoggerError {
 }
 
 func (logger *Logger) printNormal(level LoggerLevel, str string) LoggerError {
-	lvstr := getLevelStr(level)
-	now := getDateStr()
+	lvstr := logger.getLevelStr(level)
+	now := logger.getDateStr()
 
 	fmt.Fprintf(logger.fp, "[%s] [%s] %s\n", now, lvstr, str)
 	return ErrorNone
 }
 
 func (logger *Logger) printJson(level LoggerLevel, str string) LoggerError {
-	lvstr := getLevelStr(level)
-	now := getDateStr()
+	lvstr := logger.getLevelStr(level)
+	now := logger.getDateStr()
 
 	var tmpstruct LoggerJson
 	tmpstruct.Level = lvstr
