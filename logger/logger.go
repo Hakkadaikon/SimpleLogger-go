@@ -31,7 +31,7 @@ type Logger struct {
 
 func (logger *Logger) Init(level LoggerLevel, path string) LoggerError {
 	if level > LevelError {
-		fmt.Printf("Invalid arguent. level[%d]\n", level)
+		fmt.Printf("Invalid argument. level[%d]\n", level)
 		return ErrorInvalidArgument
 	}
 
