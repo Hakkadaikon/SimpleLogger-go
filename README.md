@@ -5,7 +5,7 @@ SimpleLogger-go is logger library.
 ## Usage
 Examples:
 
-'''
+```go
 package main
 
 import (
@@ -26,23 +26,23 @@ func main() {
 
     log.Deinit()
 }
-'''
+```
 
 Output(OutputTypeNormal):
 
-'''
+```
 [2022/11/07 01:13:46] [Info] Info message
 [2022/11/07 01:13:46] [Warning] Warning message
 [2022/11/07 01:13:46] [Error] Error message
-'''
+```
 
 Output(OutputTypeJson):
 
-'''
+```json
 {"level":"Info","message":"Info message","date":"2022/11/07 01:13:46"}
 {"level":"Warning","message":"Warning message","date":"2022/11/07 01:13:46"}
 {"level":"Error","message":"Error message","date":"2022/11/07 01:13:46"}
-'''
+```
 
 # Author
 Hakkadaikon
