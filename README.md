@@ -15,7 +15,7 @@ import (
 func main() {
     var log logger.Logger
 
-    // Level      : LoggerDebug/LoggerInfo/LoggerWarnng/LoggerError
+    // Level      : LevelDebug/LevelInfo/LevelWarning/LevelError
     // OutputType : OutputTypeNormal/OutputTypeJson 
     log.Init(logger.LevelInfo, "./test.log", logger.OutputTypeNormal)
 
