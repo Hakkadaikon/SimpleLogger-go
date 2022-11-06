@@ -1,9 +1,9 @@
-package main
+package logger_test
 
 import (
 	"os"
-	"test/logger"
 	"testing"
+        "github.com/Hakkadaikon/SimpleLogger-go"
 )
 
 func TestInitInvalidArgument(t *testing.T) {
