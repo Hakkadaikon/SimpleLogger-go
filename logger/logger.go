@@ -41,7 +41,7 @@ func (logger *Logger) Init(level LoggerLevel, path string) LoggerError {
 	}
 
 	var err error
-	logger.fp, err = os.OpenFile(path, os.O_WRONLY | os.O_CREATE | os.O_APPEND, 0666)
+	logger.fp, err = os.OpenFile(path, os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil {
 		fmt.Printf("open error. reason[%v]\n", err)
 		return ErrorLogFileOpenFailed
