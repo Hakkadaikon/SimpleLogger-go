@@ -147,3 +147,18 @@ func TestError(t *testing.T) {
 	log.Deinit()
 	os.Remove("log/error.log")
 }
+
+func TestDeinit(t *testing.T) {
+	var log logger.Logger
+	log.Init(logger.LevelError, "log/test.log")
+
+	if err := log.Deinit(); err != logger.ErrorNone {
+		t.Errorf("Test case[Deinit() normal] err:%d want:%d", err, logger.ErrorNone)
+	}
+
+	if err := log.Deinit(); err != logger.ErrorLogFileCloseFailed {
+		t.Errorf("Test case[Deinit() error] err:%d want:%d", err, logger.ErrorLogFileCloseFailed)
+	}
+
+	os.Remove("log/test.log")
+}
