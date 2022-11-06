@@ -21,6 +21,8 @@ const (
 	ErrorNone LoggerError = iota
 	ErrorInvalidArgument
 	ErrorLogFileOpenFailed
+	ErrorLogFileCloseFailed
+	ErrorLevelNotEnough
 )
 
 type Logger struct {
@@ -31,7 +33,7 @@ type Logger struct {
 
 func (logger *Logger) Init(level LoggerLevel, path string) LoggerError {
 	if level > LevelError {
-		fmt.Printf("Invalid argument. level[%d]\n", level)
+		//fmt.Printf("Invalid argument. level[%d]\n", level)
 		return ErrorInvalidArgument
 	}
 
@@ -43,7 +45,7 @@ func (logger *Logger) Init(level LoggerLevel, path string) LoggerError {
 	var err error
 	logger.fp, err = os.OpenFile(path, os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil {
-		fmt.Printf("open error. reason[%v]\n", err)
+		//fmt.Printf("open error. reason[%v]\n", err)
 		return ErrorLogFileOpenFailed
 	}
 
@@ -52,10 +54,13 @@ func (logger *Logger) Init(level LoggerLevel, path string) LoggerError {
 	return ErrorNone
 }
 
-func (logger *Logger) Deinit() {
+func (logger *Logger) Deinit() LoggerError {
 	if err := logger.fp.Close(); err != nil {
-		fmt.Printf("close error. reason[%v]\n", err)
+		//fmt.Printf("close error. reason[%v]\n", err)
+		return ErrorLogFileCloseFailed
 	}
+
+	return ErrorNone
 }
 
 func GetDateStr() string {
@@ -89,28 +94,30 @@ func GetLevelStr(level LoggerLevel) string {
 	return lvstr
 }
 
-func (logger *Logger) Print(level LoggerLevel, str string) {
+func (logger *Logger) Print(level LoggerLevel, str string) LoggerError {
 	if level < logger.level {
-		return
+		return ErrorLevelNotEnough
 	}
 
 	lvstr := GetLevelStr(level)
 	now := GetDateStr()
 	fmt.Fprintf(logger.fp, "[%s] [%s] %s\n", now, lvstr, str)
+
+	return ErrorNone
 }
 
-func (logger *Logger) Debug(str string) {
-	logger.Print(LevelDebug, str)
+func (logger *Logger) Debug(str string) LoggerError {
+	return logger.Print(LevelDebug, str)
 }
 
-func (logger *Logger) Info(str string) {
-	logger.Print(LevelInfo, str)
+func (logger *Logger) Info(str string) LoggerError {
+	return logger.Print(LevelInfo, str)
 }
 
-func (logger *Logger) Warning(str string) {
-	logger.Print(LevelWarning, str)
+func (logger *Logger) Warning(str string) LoggerError {
+	return logger.Print(LevelWarning, str)
 }
 
-func (logger *Logger) Error(str string) {
-	logger.Print(LevelError, str)
+func (logger *Logger) Error(str string) LoggerError {
+	return logger.Print(LevelError, str)
 }
