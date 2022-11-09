@@ -1,4 +1,6 @@
 # SimpleLogger-go
+[![ci](https://github.com/Hakkadaikon/SimpleLogger-go/actions/workflows/ci.yml/badge.svg)](https://github.com/Hakkadaikon/SimpleLogger-go/actions/workflows/ci.yml)
+
 ## Description
 SimpleLogger-go is logger library.
 
