@@ -5,15 +5,25 @@ on:
 
 jobs:
   linux-test:
-    runs-on: linux-latest
+    runs-on: ubuntu-latest
 
     steps:
-      - name: run-test
+      - uses: actions/checkout@v3
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.19
+      - name: Run test
         run: make test
 
   macos-test:
     runs-on: macos-latest
 
     steps:
-      - name: run-test
+      - uses: actions/checkout@v3
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.19
+      - name: Run test
         run: make test
