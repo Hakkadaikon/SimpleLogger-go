@@ -1,0 +1,19 @@
+name: ci
+
+on:
+  push:
+
+jobs:
+  linux-test:
+    runs-on: linux-latest
+
+    steps:
+      - name: run-test
+        run: make test
+
+  macos-test:
+    runs-on: macos-latest
+
+    steps:
+      - name: run-test
+        run: make test
