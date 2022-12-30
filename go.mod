@@ -1,3 +1,3 @@
-module github.com/Hakkadaikon/SimpleLogger-go
+module github.com/Hakkadaikon/go-logger
 
 go 1.19
