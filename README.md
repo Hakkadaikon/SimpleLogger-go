@@ -1,8 +1,8 @@
-# SimpleLogger-go
-[![ci](https://github.com/Hakkadaikon/SimpleLogger-go/actions/workflows/ci.yml/badge.svg)](https://github.com/Hakkadaikon/SimpleLogger-go/actions/workflows/ci.yml)
+# go-logger
+[![ci](https://github.com/Hakkadaikon/go-logger/actions/workflows/ci.yml/badge.svg)](https://github.com/Hakkadaikon/go-logger/actions/workflows/ci.yml)
 
 ## Description
-SimpleLogger-go is logger library.
+go-logger is logger library.
 
 ## Usage
 ### Examples:
@@ -11,7 +11,7 @@ SimpleLogger-go is logger library.
 package main
 
 import (
-    "github.com/Hakkadaikon/SimpleLogger-go"
+    "github.com/Hakkadaikon/go-logger"
 )
 
 func main() {

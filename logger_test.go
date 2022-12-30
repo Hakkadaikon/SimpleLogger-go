@@ -1,7 +1,7 @@
 package logger_test
 
 import (
-	"github.com/Hakkadaikon/SimpleLogger-go"
+	"github.com/Hakkadaikon/go-logger"
 	"os"
 	"testing"
 )
